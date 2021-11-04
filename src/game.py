@@ -1111,7 +1111,9 @@ def gameplay_hard():
                 else:
                     isPkingTime = False
 
+                #보스 타임이면
                 if isPkingTime:
+                    #아이템 ...
                     if len(cacti) < 2:
                         if len(cacti) == 0:
                             last_obstacle.empty()
@@ -1130,7 +1132,7 @@ def gameplay_hard():
 
                     if len(clouds) < 5 and random.randrange(CLOUD_INTERVAL) == MAGIC_NUM:
                         Cloud(width, random.randrange(height / 5, height / 2))
-
+                    #보스가 공룡 공격에 맞으면
                     if (len(m_list)==0):
                         pass
                     else:
@@ -1141,14 +1143,18 @@ def gameplay_hard():
                             boom.change_size(200,100)
                             boom.x=pking.rect.centerx-round(pking.rect.width)
                             boom.y=pking.rect.centery-round(pking.rect.height/2)
-                            pking.hp -= 1
+                            #보경
+                            pking.get_damage(3)
+                            #
                             m_list.remove(m)
 
-                            if pking.hp <= 0:
+                            #보경
+                            if pking.current_health <= 0:
+                                #
                                 pking.kill()
                                 isPkingAlive=False
 
-                    #
+                    #공룡이 보스 공격에 맞으면
                     if (len(pm_list)==0):
                         pass
                     else:
@@ -1164,6 +1170,7 @@ def gameplay_hard():
                                     playerDino.isDead = True
                                 pm_list.remove(pm)
                     #
+                #보스 타임 아니면 아이템
                 else:
                     if len(cacti) < 2:
                         if len(cacti) == 0:
@@ -1217,6 +1224,7 @@ def gameplay_hard():
                                 last_obstacle.empty()
                                 last_obstacle.add(SlowItem(gamespeed, object_size[0], object_size[1]))
 
+                #
                 playerDino.update()
                 cacti.update()
                 fire_cacti.update()
@@ -1234,8 +1242,8 @@ def gameplay_hard():
                 slow_items.update()
 
                 # 보스몬스터 타임이면,
-                if isPkingTime:
-                    pking.update()
+                # if isPkingTime:
+                #     pking.update()
                 #
 
                 if pygame.display.get_surface() != None:
@@ -1261,6 +1269,7 @@ def gameplay_hard():
                     if isPkingTime:
                         # print(pking.pattern_idx)
                         pking.draw()
+                        pking.update()
                         # 보스 익룡이 쏘는 미사일을 보여준다.
                         for pm in pm_list:
                             pm.show()
