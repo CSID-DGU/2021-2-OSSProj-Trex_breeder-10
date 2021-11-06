@@ -309,7 +309,7 @@ def gameplay_easy():
     gameOver = False
     gameQuit = False
     ###
-    life = 5
+    life = 10
     ###
     paused = False
 
@@ -675,7 +675,7 @@ def gameplay_hard():
     gameOver = False
     gameQuit = False
     ###
-    life = 5
+    life = 10
     ###
     paused = False
     
