@@ -845,11 +845,19 @@ def gameplay_hard():
             if not paused:
 
                 # 방향키 추가 (현재 여기 근데 수정더):
+                #보경 화면 벗어나는 버그 수정
                 if goLeft:
-                    playerDino.rect.left= playerDino.rect.left -(gamespeed)
+                    if playerDino.rect.left <= 0:
+                        playerDino.rect.left =0
+                    else:
+                        playerDino.rect.left = playerDino.rect.left -(gamespeed)
 
                 if goRight:
-                    playerDino.rect.left = playerDino.rect.left + gamespeed
+                    if playerDino.rect.right >= width:
+                        playerDino.rect.right = width
+                    else:
+                        playerDino.rect.right = playerDino.rect.right +(gamespeed)
+                #보경 여기까지
                 #
 
                 # 4. space_go가 True이고, 일정 시간이 지나면, 미사일을 만들고, 이를 미사일 배열에 넣습니다.
