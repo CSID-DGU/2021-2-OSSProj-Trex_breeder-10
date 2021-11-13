@@ -43,54 +43,54 @@ class Cloud(pygame.sprite.Sprite):
             self.kill()
 
 
-# class Heart:
+class Heart:
 
-#     def __init__(self, n=0, sizex=-1, sizey=-1, x=-1, y=-1):
-#         self.images, self.rect = load_sprite_sheet("hpbar.png", 2, 1, sizex, sizey)
-#         #보경 
-#         #self.image = self.images[0]
-#         if n==0:
-#             self.image = self.images[0]
-#         else:
-#             self.image = self.images[1]
-#         #
+    def __init__(self, sizex=-1, sizey=-1, x=-1, y=-1):
+        self.images, self.rect = load_sprite_sheet("hpbar.png", 2, 1, sizex, sizey)
+        #보경 
+        self.image = self.images[0]
+        # if n==0:
+        #     self.image = self.images[0]
+        # else:
+        #     self.image = self.images[1]
+        #
 
-#         if x == -1:
-#             self.rect.left = width * 0.01
-#         else:
-#             self.rect.left = x
+        if x == -1:
+            self.rect.left = width * 0.01
+        else:
+            self.rect.left = x
 
-#         if y == -1:
-#             self.rect.top = height * 0.02
-#         else:
-#             self.rect.top = y
+        if y == -1:
+            self.rect.top = height * 0.02
+        else:
+            self.rect.top = y
 
-#     def draw(self):
-#         screen.blit(self.image, self.rect)
+    def draw(self):
+        screen.blit(self.image, self.rect)
 
 
-# class HeartIndicator:
+class HeartIndicator:
 
-#     def __init__(self, life):
-#         # self.heart_size = 40
-#         self.life = life
-#         self.life_set = []
+    def __init__(self, life):
+        # self.heart_size = 40
+        self.life = life
+        self.life_set = []
 
-#     def draw(self):
-#         for life in self.life_set:
-#             life.draw()
+    def draw(self):
+        for life in self.life_set:
+            life.draw()
 
-#     def update(self, life):
-#         self.life = life
-#         # self.life_set = [Heart(self.heart_size, self.heart_size, width * 0.01 + i * self.heart_size) for i in range(self.life)]
-#         # self.life_set = [Heart(object_size[0], object_size[1], width * 0.01 + i * (object_size[0])-i) for i in range(self.life)]
-#         #보경
-#         for i in range(10):
-#             if(i<self.life):
-#                 self.life_set.append(Heart(0,20, object_size[1], width * 0.01 + i * 20))
-#             else:
-#                 self.life_set.append(Heart(1,20, object_size[1], width * 0.01 + i * 20))  
-#         #
+    def update(self, life):
+        self.life = life
+        # self.life_set = [Heart(self.heart_size, self.heart_size, width * 0.01 + i * self.heart_size) for i in range(self.life)]
+        self.life_set = [Heart(20, object_size[1], width * 0.01 + i * 20) for i in range(self.life)]
+        #보경
+        # for i in range(10):
+        #     if(i<self.life):
+        #         self.life_set.append(Heart(0,20, object_size[1], width * 0.01 + i * 20))
+        #     else:
+        #         self.life_set.append(Heart(1,20, object_size[1], width * 0.01 + i * 20))  
+        #
 
 
 class Scoreboard:
