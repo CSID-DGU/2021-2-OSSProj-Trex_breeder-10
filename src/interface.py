@@ -46,22 +46,16 @@ class Cloud(pygame.sprite.Sprite):
 class Heart:
 
     def __init__(self, sizex=-1, sizey=-1, x=-1, y=-1):
-        self.images, self.rect = load_sprite_sheet("hpbar.png", 2, 1, sizex, sizey)
-        #보경 
-        self.image = self.images[0]
-        # if n==0:
-        #     self.image = self.images[0]
-        # else:
-        #     self.image = self.images[1]
-        #
-
+        self.image, self.rect = load_image("hpbar.png", sizex, sizey)
+        #self.image = self.images[0]
+        #화면에서 heart 위치
         if x == -1:
             self.rect.left = width * 0.01
         else:
             self.rect.left = x
 
         if y == -1:
-            self.rect.top = height * 0.02
+            self.rect.top = height * 0.04
         else:
             self.rect.top = y
 
@@ -72,25 +66,25 @@ class Heart:
 class HeartIndicator:
 
     def __init__(self, life):
-        # self.heart_size = 40
-        self.life = life
+        #보경
+        self.heart_size = [20,30] #x,y
+        self.max_life = life
+        #
+        self.current_life = life
         self.life_set = []
 
     def draw(self):
+        #보경
+        pygame.draw.rect(screen, black, (width * 0.01, height * 0.04, self.heart_size[0]*self.max_life, self.heart_size[1]), 3) # 위치x,위치y,가로길이,세로길이
+        #
         for life in self.life_set:
             life.draw()
 
     def update(self, life):
-        self.life = life
+        self.current_life = life
         # self.life_set = [Heart(self.heart_size, self.heart_size, width * 0.01 + i * self.heart_size) for i in range(self.life)]
-        self.life_set = [Heart(20, object_size[1], width * 0.01 + i * 20) for i in range(self.life)]
-        #보경
-        # for i in range(10):
-        #     if(i<self.life):
-        #         self.life_set.append(Heart(0,20, object_size[1], width * 0.01 + i * 20))
-        #     else:
-        #         self.life_set.append(Heart(1,20, object_size[1], width * 0.01 + i * 20))  
-        #
+        self.life_set = [Heart(self.heart_size[0], self.heart_size[1], width * 0.01 + i * self.heart_size[0]) for i in range(self.current_life)] #가로길이,세로길이,위치x
+
 
 
 class Scoreboard:
