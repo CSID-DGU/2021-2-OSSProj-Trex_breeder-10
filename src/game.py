@@ -610,7 +610,10 @@ def gameplay_easy():
 
                 if counter % speed_up_limit_count == speed_up_limit_count - 1:
                     new_ground.speed -= 1
-                    gamespeed += 1
+                    #보경 게임 최고 속도 설정 (1~10)
+                    if gamespeed < 13:
+                        gamespeed += 1
+                    #
 
                 counter = (counter + 1)
 
@@ -1341,7 +1344,9 @@ def gameplay_hard():
 
                 if counter % speed_up_limit_count == speed_up_limit_count - 1:
                     new_ground.speed -= 1
-                    gamespeed += 1
+                    #보경 게임 최고 속도 설정 (1~10)
+                    if gamespeed < 13:
+                        gamespeed += 1
                     #보경 보스 등장시 속도 증가 제한
                     # if(isPkingTime == False):
                     #     new_ground.speed -= 1
