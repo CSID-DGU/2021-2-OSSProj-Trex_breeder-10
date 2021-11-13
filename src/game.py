@@ -304,7 +304,15 @@ def gameplay_easy():
         high_score = result['score']
     #    if bgm_on:
     #       pygame.mixer.music.play(-1) # 배경음악 실행
+    
+    #보경 - 작은익룡 맞으면 감속
+    global gamespeed 
     gamespeed = 4
+    def gamespeed_down():
+        global gamespeed
+        if gamespeed > 4:
+            gamespeed -= 1
+    #
     startMenu = False
     gameOver = False
     gameQuit = False
@@ -473,6 +481,9 @@ def gameplay_easy():
                         if pygame.sprite.collide_mask(playerDino, p):
                             playerDino.collision_immune = True
                             life -= 1
+                            #보경
+                            gamespeed_down()
+                            #
                             collision_time = pygame.time.get_ticks()
                             if life <= 0:
                                 playerDino.isDead = True
@@ -674,12 +685,20 @@ def gameplay_hard():
     # if bgm_on:
     #     pygame.mixer.music.play(-1)  # 배경음악 실행
     
+    #보경 - 작은익룡이랑 보스 총알 맞으면 감속
+    global gamespeed 
     gamespeed = 4
+    def gamespeed_down():
+        global gamespeed
+        if gamespeed > 4:
+            gamespeed -= 1
+    #
+    
     startMenu = False
     gameOver = False
     gameQuit = False
     ###
-    life = 15
+    life = 20
     ###
     paused = False
     
@@ -1030,6 +1049,9 @@ def gameplay_hard():
                         if pygame.sprite.collide_mask(playerDino, p):
                             playerDino.collision_immune = True
                             life -= 1
+                            #보경
+                            gamespeed_down()
+                            #
                             collision_time = pygame.time.get_ticks()
                             if life <= 0:
                                 playerDino.isDead = True
@@ -1176,7 +1198,10 @@ def gameplay_hard():
                                 print("공격에 맞음.")
                                 # if pygame.sprite.collide_mask(playerDino, pm):
                                 playerDino.collision_immune = True
+                                #보경
                                 life -= 2
+                                gamespeed_down()
+                                #
                                 
                                 collision_time = pygame.time.get_ticks()
                                 if life <= 0:
@@ -1315,12 +1340,12 @@ def gameplay_hard():
                         high_score = playerDino.score
 
                 if counter % speed_up_limit_count == speed_up_limit_count - 1:
+                    new_ground.speed -= 1
+                    gamespeed += 1
                     #보경 보스 등장시 속도 증가 제한
-                    # new_ground.speed -= 1
-                    # gamespeed += 1
-                    if(isPkingTime == False):
-                        new_ground.speed -= 1
-                        gamespeed += 1
+                    # if(isPkingTime == False):
+                    #     new_ground.speed -= 1
+                    #     gamespeed += 1
                     #
 
                 counter = (counter + 1)
