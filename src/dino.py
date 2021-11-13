@@ -2,7 +2,7 @@ from src.setting import *
 
 
 class Dino():
-    def __init__(self, sizex=-1, sizey=-1,type = None):
+    def __init__(self, sizex=-1, sizey=-1,type = None, health=100):
         
         # 디노의 타입을 결정합니다. 
         self.type = type
@@ -57,6 +57,29 @@ class Dino():
         self.stand_pos_width = self.rect.width
         self.duck_pos_width = self.rect1.width
 
+        #보경
+        self.current_health = health
+        self.maximum_health = health
+        self.health_bar_length = 250
+        self.health_ratio = self.maximum_health / self.health_bar_length
+    
+    def get_damage(self, amount):
+        if self.current_health > 0:
+            self.current_health -= amount
+        if self.current_health <= 0:
+            self.current_health =0
+    
+    def get_health(self, amount):
+        if self.current_health < self.maximum_health:
+            self.current_health += amount
+        if self.current_health >= self.maximum_health:
+            self.current_health = self.maximum_health
+
+    def dino_health(self):
+        pygame.draw.rect(screen, bright_red, (10,10,self.current_health/self.health_ratio,25))
+        pygame.draw.rect(screen, white, (10,10,self.health_bar_length,25),4)
+        #
+
     def draw(self):
         screen.blit(self.image,self.rect)
 
@@ -67,6 +90,9 @@ class Dino():
             self.isJumping = False
 
     def update(self):
+        #보경
+        self.dino_health()
+        #
         if self.isJumping:
             self.movement[1] = self.movement[1] + gravity
 

@@ -318,7 +318,7 @@ def gameplay_easy():
     new_ground = Ground(-1 * gamespeed)
     scb = Scoreboard()
     highsc = Scoreboard(width * 0.78)
-    heart = HeartIndicator(life)
+    #보경 heart = HeartIndicator(life)
     speed_indicator = Scoreboard(width * 0.12, height * 0.15)
     counter = 0
 
@@ -424,9 +424,11 @@ def gameplay_easy():
                     if not playerDino.collision_immune:
                         if pygame.sprite.collide_mask(playerDino, s):
                             playerDino.collision_immune = True
-                            life -= 1
+                            #life -= 1
+                            playerDino.get_damage(10)
                             collision_time = pygame.time.get_ticks()
-                            if life == 0:
+                            #if life == 0:
+                            if playerDino.current_health == 0:
                                 playerDino.isDead = True
                             if pygame.mixer.get_init() is not None:
                                 die_sound.play()
@@ -436,9 +438,11 @@ def gameplay_easy():
                     if not playerDino.collision_immune:
                         if pygame.sprite.collide_mask(playerDino, c):
                             playerDino.collision_immune = True
-                            life -= 1
+                            #life -= 1
+                            playerDino.get_damage(10)
                             collision_time = pygame.time.get_ticks()
-                            if life == 0:
+                            #if life == 0:
+                            if playerDino.current_health == 0:
                                 playerDino.isDead = True
                             if pygame.mixer.get_init() is not None:
                                 die_sound.play()
@@ -453,9 +457,11 @@ def gameplay_easy():
                     if not playerDino.collision_immune:
                         if pygame.sprite.collide_mask(playerDino, f):
                             playerDino.collision_immune = True
-                            life -= 1
+                            #life -= 1
+                            playerDino.get_damage(10)
                             collision_time = pygame.time.get_ticks()
-                            if life == 0:
+                            #if life == 0:
+                            if playerDino.current_health == 0:
                                 playerDino.isDead = True
                             if pygame.mixer.get_init() is not None:
                                 die_sound.play()
@@ -470,9 +476,11 @@ def gameplay_easy():
                     if not playerDino.collision_immune:
                         if pygame.sprite.collide_mask(playerDino, p):
                             playerDino.collision_immune = True
-                            life -= 1
+                            #life -= 1
+                            playerDino.get_damage(10)
                             collision_time = pygame.time.get_ticks()
-                            if life == 0:
+                            #if life == 0:
+                            if playerDino.current_health == 0:
                                 playerDino.isDead = True
                             if pygame.mixer.get_init() is not None:
                                 die_sound.play()
@@ -544,7 +552,7 @@ def gameplay_easy():
                 if len(clouds) < 5 and random.randrange(CLOUD_INTERVAL) == MAGIC_NUM:
                     Cloud(width, random.randrange(height / 5, height / 2))
 
-                playerDino.update()
+                playerDino.update() #보경 여기서 hpbar 업데이트
                 cacti.update()
                 fire_cacti.update()
                 pteras.update()
@@ -556,7 +564,7 @@ def gameplay_easy():
                 scb.update(playerDino.score)
                 highsc.update(high_score)
                 speed_indicator.update(gamespeed - 3)
-                heart.update(life)
+                #보경 heart.update(life)
                 slow_items.update()
 
                 stones.update()
@@ -568,7 +576,9 @@ def gameplay_easy():
                     scb.draw()
                     speed_indicator.draw()
                     screen.blit(speed_text, (width * 0.01, height * 0.13))
-                    heart.draw()
+                    #보경 heart.draw()
+                    playerDino.dino_health()
+                    #
                     if high_score != 0:
                         highsc.draw()
                         screen.blit(HI_image, HI_rect)
@@ -686,7 +696,7 @@ def gameplay_hard():
     new_ground = Ground(-1 * gamespeed)
     scb = Scoreboard()
     highsc = Scoreboard(width * 0.78)
-    heart = HeartIndicator(life)
+    #보경 heart = HeartIndicator(life)
     speed_indicator = Scoreboard(width * 0.12, height * 0.15)
     counter = 0
 
@@ -970,9 +980,11 @@ def gameplay_hard():
                     if not playerDino.collision_immune:
                         if pygame.sprite.collide_mask(playerDino, c):
                             playerDino.collision_immune = True
-                            life -= 1
+                            #life -= 1
+                            playerDino.get_damage(10)
                             collision_time = pygame.time.get_ticks()
-                            if life == 0:
+                            #if life == 0:
+                            if playerDino.current_health == 0:
                                 playerDino.isDead = True
                             if pygame.mixer.get_init() is not None:
                                 die_sound.play()
@@ -987,9 +999,11 @@ def gameplay_hard():
                     if not playerDino.collision_immune:
                         if pygame.sprite.collide_mask(playerDino, f):
                             playerDino.collision_immune = True
-                            life -= 1
+                            #life -= 1
+                            playerDino.get_damage(10)
                             collision_time = pygame.time.get_ticks()
-                            if life == 0:
+                            #if life == 0:
+                            if playerDino.current_health == 0:
                                 playerDino.isDead = True
                             if pygame.mixer.get_init() is not None:
                                 die_sound.play()
@@ -1025,9 +1039,11 @@ def gameplay_hard():
                     if not playerDino.collision_immune:
                         if pygame.sprite.collide_mask(playerDino, p):
                             playerDino.collision_immune = True
-                            life -= 1
+                            #life -= 1
+                            playerDino.get_damage(10)
                             collision_time = pygame.time.get_ticks()
-                            if life == 0:
+                            #if life == 0:
+                            if playerDino.current_health == 0:
                                 playerDino.isDead = True
                             if pygame.mixer.get_init() is not None:
                                 die_sound.play()
@@ -1042,9 +1058,11 @@ def gameplay_hard():
                     if not playerDino.collision_immune:
                         if pygame.sprite.collide_mask(playerDino, s):
                             playerDino.collision_immune = True
-                            life -= 1
+                            #life -= 1
+                            playerDino.get_damage(10)
                             collision_time = pygame.time.get_ticks()
-                            if life == 0:
+                            #if life == 0:
+                            if playerDino.current_health == 0:
                                 playerDino.isDead = True
                             if pygame.mixer.get_init() is not None:
                                 die_sound.play()
@@ -1172,9 +1190,11 @@ def gameplay_hard():
                                 print("공격에 맞음.")
                                 # if pygame.sprite.collide_mask(playerDino, pm):
                                 playerDino.collision_immune = True
-                                life -= 1
+                                #life -= 1
+                                playerDino.get_damage(10)
                                 collision_time = pygame.time.get_ticks()
-                                if life == 0:
+                                #if life == 0:
+                                if playerDino.current_health == 0:
                                     playerDino.isDead = True
                                 pm_list.remove(pm)
                     #
@@ -1246,13 +1266,12 @@ def gameplay_hard():
                 scb.update(playerDino.score)
                 highsc.update(high_score)
                 speed_indicator.update(gamespeed - 3)
-                heart.update(life)
+                #보경 heart.update(life)
                 slow_items.update()
 
-                # 보스몬스터 타임이면,
-                # if isPkingTime:
-                #     pking.update()
-                #
+                #보스몬스터 타임이면,
+                if isPkingTime:
+                    pking.update()
 
                 if pygame.display.get_surface() != None:
                     screen.fill(background_col)
@@ -1261,7 +1280,9 @@ def gameplay_hard():
                     scb.draw()
                     speed_indicator.draw()
                     screen.blit(speed_text, (width * 0.01, height * 0.13))
-                    heart.draw()
+                    #보경 heart.draw()
+                    playerDino.dino_health()
+                    #
                     if high_score != 0:
                         highsc.draw()
                         screen.blit(HI_image, HI_rect)
@@ -1277,7 +1298,7 @@ def gameplay_hard():
                     if isPkingTime:
                         # print(pking.pattern_idx)
                         pking.draw()
-                        pking.update()
+                        pking.bos_health()
                         # 보스 익룡이 쏘는 미사일을 보여준다.
                         for pm in pm_list:
                             pm.show()
@@ -1310,8 +1331,13 @@ def gameplay_hard():
                         high_score = playerDino.score
 
                 if counter % speed_up_limit_count == speed_up_limit_count - 1:
-                    new_ground.speed -= 1
-                    gamespeed += 1
+                    #보경
+                    # new_ground.speed -= 1
+                    # gamespeed += 1
+                    if(isPkingTime == False):
+                        new_ground.speed -= 1
+                        gamespeed += 1
+                    #
 
                 counter = (counter + 1)
 

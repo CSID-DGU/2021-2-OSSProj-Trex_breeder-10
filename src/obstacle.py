@@ -97,19 +97,17 @@ class PteraKing(pygame.sprite.Sprite):
     def get_damage(self, amount):
         if self.current_health > 0:
             self.current_health -= amount
-            print(self.current_health)
         if self.current_health <= 0:
             self.current_health =0
 
     def bos_health(self):
         #pygame.draw.rect(self.image, color, [position_x,position_y, width, height], 1)
-        pygame.draw.rect(screen, (255,0,0),(self.rect[0],self.rect[1],self.current_health/self.health_ratio,10)) #피
-        pygame.draw.rect(screen, (255,255,255),(self.rect[0],self.rect[1],self.health_bar_length,10),2) #테두리
+        pygame.draw.rect(screen, bright_red, (self.rect[0],self.rect[1],self.current_health/self.health_ratio,10)) #피
+        pygame.draw.rect(screen, white, (self.rect[0],self.rect[1],self.health_bar_length,10),2) #테두리
         #보경 여기까지
 
     def draw(self):
         screen.blit(self.image, self.rect)
-        #self.bos_health()
         # 총알 그리기
 
     def pattern0(self):
